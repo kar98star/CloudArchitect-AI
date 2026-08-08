@@ -2,29 +2,30 @@
 
 > **AI-Powered AWS Infrastructure Advisor**
 
-CloudArchitect AI is a full-stack AI application that analyzes natural language project requirements and generates an optimized AWS cloud architecture. It leverages Google Gemini AI to recommend AWS services, estimate infrastructure costs, suggest security best practices, and generate Terraform code for deployment.
+CloudArchitect AI is a full-stack AI-powered application that analyzes natural-language project requirements and generates an optimized AWS cloud architecture.
+
+The application uses **Google Gemini AI** to recommend AWS services, estimate infrastructure costs, suggest security best practices, generate Terraform code, and provide a deployment guide.
 
 ---
 
 ## 🚀 Live Demo
 
-**Frontend:**
-http://cloudarchitect-ai-kartikeya.s3-website.ap-south-1.amazonaws.com
+👉 **[CloudArchitect AI – Live Demo](http://cloudarchitect-ai-kartikeya.s3-website.ap-south-1.amazonaws.com/)**
 
 ---
 
-## 📌 Features
+## ✨ Features
 
 * 🤖 AI-powered AWS architecture generation
 * ☁️ Intelligent AWS service recommendations
-* 🔐 Security best practices
+* 🔐 Security best-practice recommendations
 * 💰 Monthly infrastructure cost estimation
+* 🏗️ Interactive AWS architecture visualization
 * 📄 Terraform code generation
-* 🏗️ Interactive architecture visualization
+* 📥 Terraform file download
 * 📋 Deployment guide
-* 📥 Terraform download
-* 📄 PDF report export
-* 🕒 Architecture history (Local Storage)
+* 📄 PDF architecture report export
+* 🕒 Architecture history using Local Storage
 
 ---
 
@@ -35,15 +36,17 @@ http://cloudarchitect-ai-kartikeya.s3-website.ap-south-1.amazonaws.com
 * React.js
 * Vite
 * Axios
-* jsPDF
+* JavaScript
 * HTML5
 * CSS3
+* jsPDF
 
 ### Backend
 
 * Node.js
 * Express.js
 * Google Gemini API
+* REST API
 
 ### Cloud & DevOps
 
@@ -55,34 +58,122 @@ http://cloudarchitect-ai-kartikeya.s3-website.ap-south-1.amazonaws.com
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ System Architecture
 
+```text
+                    User
+                      │
+                      ▼
+          ┌─────────────────────┐
+          │   Amazon S3         │
+          │ Static Website      │
+          └──────────┬──────────┘
+                     │
+                     ▼
+          ┌─────────────────────┐
+          │   React + Vite      │
+          │     Frontend        │
+          └──────────┬──────────┘
+                     │
+                 REST API
+                     │
+                     ▼
+          ┌─────────────────────┐
+          │      AWS EC2        │
+          │ Node.js + Express   │
+          │       + PM2         │
+          └──────────┬──────────┘
+                     │
+                     ▼
+          ┌─────────────────────┐
+          │   Google Gemini     │
+          │      AI API         │
+          └──────────┬──────────┘
+                     │
+                     ▼
+          ┌─────────────────────┐
+          │ AI Generated AWS    │
+          │    Architecture     │
+          └─────────────────────┘
 ```
-                User
-                  │
-                  ▼
-      Amazon S3 Static Website
-                  │
-                  ▼
-          React Frontend
-                  │
-          REST API Request
-                  │
-                  ▼
-      AWS EC2 (Node.js + Express)
-                  │
-                  ▼
-         Google Gemini AI API
-                  │
-                  ▼
-      AI Generated Architecture
+
+---
+
+## 🔄 Application Workflow
+
+```text
+User enters project requirement
+            ↓
+React Frontend
+            ↓
+REST API Request
+            ↓
+Node.js + Express Backend
+            ↓
+Google Gemini AI
+            ↓
+Requirement Analysis
+            ↓
+AWS Architecture Generation
+            ↓
+┌──────────────────────────────┐
+│ AWS Service Recommendations  │
+│ Security Recommendations     │
+│ Cost Estimation              │
+│ Terraform Code               │
+│ Deployment Guide             │
+└──────────────────────────────┘
+            ↓
+React Dashboard
 ```
+
+---
+
+## 📊 Generated Architecture
+
+Based on the user's requirements, CloudArchitect AI can generate:
+
+### ☁️ AWS Services
+
+The AI can recommend services such as:
+
+* Amazon EC2
+* AWS Lambda
+* Amazon API Gateway
+* Amazon S3
+* Amazon RDS
+* Amazon DynamoDB
+* Amazon CloudFront
+* AWS WAF
+* Amazon CloudWatch
+* Amazon SNS
+* Elastic Load Balancing
+* Amazon ElastiCache
+
+### 🔐 Security
+
+The application provides recommendations such as:
+
+* IAM roles and least-privilege permissions
+* MFA
+* Encryption
+* Secure S3 bucket configuration
+* Network security
+* Monitoring and logging
+
+### 💰 Cost Estimation
+
+The application provides an estimated monthly infrastructure cost along with a service-level cost breakdown.
+
+### 🏗️ Terraform
+
+The application generates Terraform Infrastructure-as-Code that can be used as a starting point for AWS deployment.
 
 ---
 
 ## 📂 Project Structure
 
-```
+```text
 CloudArchitect-AI
 │
 ├── frontend
@@ -103,9 +194,9 @@ CloudArchitect-AI
 
 ---
 
-## ⚙️ Installation
+# ⚙️ Local Installation
 
-### Clone Repository
+## 1. Clone Repository
 
 ```bash
 git clone https://github.com/kar98star/Infrastructure-advisor.git
@@ -117,7 +208,7 @@ cd Infrastructure-advisor
 
 ---
 
-### Backend Setup
+## 2. Backend Setup
 
 ```bash
 cd backend
@@ -137,7 +228,7 @@ Start the backend:
 node server.js
 ```
 
-or using PM2
+Or run it using PM2:
 
 ```bash
 pm2 start server.js --name cloudarchitect-backend
@@ -145,15 +236,22 @@ pm2 start server.js --name cloudarchitect-backend
 
 ---
 
-### Frontend Setup
+## 3. Frontend Setup
+
+Open another terminal:
 
 ```bash
 cd frontend
 npm install
+```
+
+Start the development server:
+
+```bash
 npm run dev
 ```
 
-For production build:
+For a production build:
 
 ```bash
 npm run build
@@ -161,64 +259,116 @@ npm run build
 
 ---
 
-## 🚀 Deployment
+# 🚀 Deployment
 
-### Frontend
+## Frontend – Amazon S3
 
-* Amazon S3 Static Website Hosting
+The React frontend is deployed using:
 
-### Backend
+**Amazon S3 Static Website Hosting**
 
-* AWS EC2
-* PM2 Process Manager
+Live application:
 
----
-
-## 📸 Application Workflow
-
-1. User enters project requirements.
-2. Frontend sends request to Express REST API.
-3. Backend invokes Google Gemini AI.
-4. AI analyzes the requirements.
-5. Application returns:
-
-   * AWS Architecture
-   * Security Recommendations
-   * Cost Estimation
-   * Terraform Code
-   * Deployment Guide
-6. User can export the report as PDF or download the Terraform file.
+👉 **[CloudArchitect AI](http://cloudarchitect-ai-kartikeya.s3-website.ap-south-1.amazonaws.com/)**
 
 ---
 
-## 💡 Example Prompt
+## Backend – AWS EC2
 
+The backend is deployed on an **AWS EC2 instance** using:
+
+* Node.js
+* Express.js
+* PM2
+
+PM2 keeps the backend application running as a background process and automatically restarts it if required.
+
+---
+
+# 🧪 Example Requirement
+
+The user can enter a natural-language requirement such as:
+
+```text
+Build a food delivery application for 50,000 users
+with real-time order tracking.
 ```
-Build a food delivery application for 50,000 users with real-time order tracking.
+
+CloudArchitect AI analyzes the requirement and generates:
+
+```text
+AWS Architecture
+        ↓
+Security Recommendations
+        ↓
+Cost Estimation
+        ↓
+Terraform Code
+        ↓
+Deployment Guide
 ```
 
 ---
 
-## 🎯 Future Improvements
+# 🎯 Use Cases
 
-* User Authentication
-* MongoDB Integration
-* CloudFront + HTTPS
-* Custom Domain
-* Kubernetes Deployment
-* Docker Support
-* CI/CD using GitHub Actions
-* CloudWatch Monitoring
-* Multi-cloud Recommendations (AWS, Azure, GCP)
+CloudArchitect AI can help:
+
+* Developers design AWS architectures
+* Students learn AWS architecture
+* Beginners understand AWS services
+* Teams quickly create infrastructure proposals
+* Developers generate Terraform starting points
+* Estimate initial AWS infrastructure costs
 
 ---
 
-## 👨‍💻 Author
+# 🔮 Future Improvements
 
-**Kartikeya Verma**
+* 🔐 User authentication
+* 🗄️ MongoDB integration
+* 🌐 CloudFront + HTTPS
+* 🔗 Custom domain
+* 🐳 Docker containerization
+* ⚙️ CI/CD using GitHub Actions
+* 📊 CloudWatch monitoring
+* ☸️ Kubernetes deployment
+* ☁️ Multi-cloud recommendations for AWS, Azure, and GCP
+* 📈 More accurate AWS cost estimation
 
-* GitHub: https://github.com/kar98star
-* LinkedIn: https://www.linkedin.com/in/kartikeya-verma-12737328a/
+---
+
+# 👨‍💻 Author
+
+### Kartikeya Verma
+
+**GitHub:**
+https://github.com/kar98star
+
+**LinkedIn:**
+https://www.linkedin.com/in/kartikeya-verma-12737328a/
+
+---
+
+## ⭐ Project Highlights
+
+* Full-stack AI application
+* React + Node.js architecture
+* Google Gemini API integration
+* AWS cloud deployment
+* S3 static website hosting
+* EC2 backend deployment
+* PM2 process management
+* REST API integration
+* Infrastructure-as-Code generation
+* AI-powered cloud architecture recommendations
+
+---
+
+## 📜 License
+
+This project is created for educational and portfolio purposes.
+
 
 ---
 
