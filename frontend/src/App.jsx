@@ -263,16 +263,14 @@ return (
             <h2>💵 Cost Breakdown</h2>
 
             <ul>
-              {(result.costBreakdown || []).map(
-                (entry, index) => (
-                  <li key={index}>
-                    <strong>
-                      {entry.service}
-                    </strong>
-: {entry.cost}
-                  </li>
-                )
-              )}
+              {result.costBreakdown &&
+                Object.entries(result.costBreakdown).map(
+                  ([service, cost]) => (
+                    <li key={service}>
+                      <strong>{service}</strong>: {cost}
+                    </li>
+                  )
+                )}
             </ul>
           </div>
 
