@@ -262,16 +262,31 @@ return (
           <div className="card">
             <h2>💵 Cost Breakdown</h2>
 
-            <ul>
-              {result.costBreakdown &&
-                Object.entries(result.costBreakdown).map(
-                  ([service, cost]) => (
-                    <li key={service}>
-                      <strong>{service}</strong>: {cost}
-                    </li>
-                  )
-                )}
-            </ul>
+            
+<ul>
+  {(
+    Array.isArray(result.costBreakdown)
+      ? result.costBreakdown
+      : Object.entries(result.costBreakdown || {}).map(
+          ([service, cost]) => ({
+            service:
+              typeof cost === "object" && cost !== null
+                ? cost.service || service
+                : service,
+            cost:
+              typeof cost === "object" && cost !== null
+                ? cost.cost
+                : cost,
+          })
+        )
+  ).map((item, index) => (
+    <li key={index}>
+      <strong>{item.service}</strong>: $
+      {item.cost}
+    </li>
+  ))}
+</ul>
+
           </div>
 
         </div>
