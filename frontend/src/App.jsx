@@ -2,7 +2,7 @@ import jsPDF from "jspdf";
 import { useState, useEffect } from "react";
 import ArchitectureDiagram from "./components/ArchitectureDiagram";
 import { analyzeRequirement } from "./services/api";
-import "./App.css";
+import "./app.css";
 
 function App() {
 const [requirement, setRequirement] = useState("");
